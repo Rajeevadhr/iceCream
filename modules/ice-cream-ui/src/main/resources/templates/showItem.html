@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>|Items|</title>
+</head>
+<body>
+    <table style="width: 500px" border="1px solid #000">
+        <tr>
+            <th> Item ID </th>
+            <th> Name </th>
+            <th> Price </th>
+        </tr>
+        <tr>
+            <td th:text="${itemId}" />
+            <td th:text="${itemName}" />
+            <td th:text="${itemPrice}" />
+        </tr>
+    </table>
+</body>
+</html>
