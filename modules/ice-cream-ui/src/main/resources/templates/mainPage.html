@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/mainPage.css}" rel="stylesheet" />
     <meta charset="UTF-8" />
     <title>| Hello |</title>
-    <style>
-        #wrapper {
-            margin: 100px;
-        }
-    </style>
 </head>
 <body>
     <div id="wrapper">
-        <form action="/showItem" method="get">
+        <form action="/showItem" method="get" >
             Enter item ID :
             <input type="text" name="itemId"/>
             <input type="submit" value="Get Item"/>
         </form>
         <br />
-        <form action="/addItem" method="post">
+        <form action="/addItem" method="post" >
             Enter item Name and Price :
             <input type="text" name="itemName"/>
             <input type="text" name="itemPrice"/>
             <input type="submit" value="Add Item"/>
         </form>
         <br />
-
+        <form action="/findItem" method="get">
+            Enter item Name :
+            <input type="text" name="itemName"/>
+            <input type="submit" value="Find Item"/>
+        </form>
+        <br />
+        <form action="/all" method="get">
+            <input type="submit" value=" Show All Items "/>
+        </form>
+        <br />
+        <form action="/findItem">
+            <select name="itemName">
+                <option th:each="currentItem, stat : ${itemList}"
+                        th:text="${currentItem.getItemName()}"
+                        th:value="${currentItem.getItemName()}"/>
+            </select>
+            <input type="submit" value="Find item details"/>
+        </form>
     </div>
 
 </body>

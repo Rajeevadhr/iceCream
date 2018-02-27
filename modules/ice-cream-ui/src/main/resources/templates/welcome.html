@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/welcome.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>|Items|</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h2 style="text-align: center"> Welcome </h2>
+        <div id="forms">
+            <form method="get" action="/invoice" style="width: 100px;float: left;">
+                <input type="submit" value="Go to invoice" />
+            </form>
+            <form id="search">
+                <input type="text" name="keyword" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <table border="1px solid #000" cellspacing="0">
+            <tr>
+                <th> Item ID </th>
+                <th> Name </th>
+                <th> Price </th>
+            </tr>
+            <tr th:each="currentItem, stat : ${itemList}">
+                <td th:text="${currentItem.getId()}" />
+                <td th:text="${currentItem.getItemName()}" />
+                <td th:text="${currentItem.getPrice()}" />
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

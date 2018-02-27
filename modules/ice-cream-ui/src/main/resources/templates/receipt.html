@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>|Items|</title>
+
+</head>
+<body>
+    <h2 style="margin-left: 210px"> Receipt </h2>
+    <table style="width: 500px" border="1px solid #000" cellspacing="0">
+        <tr>
+            <th> Item ID </th>
+            <th> Name </th>
+            <th> Price </th>
+        </tr>
+        <tr th:each="currentItem, stat : ${itemList}" id="items">
+            <td th:text="${currentItem.getId()}" />
+            <td th:text="${currentItem.getItemName()}" />
+            <td th:text="${currentItem.getPrice()}" />
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right">Total :</td>
+            <td id="total" th:text="${total}">
+
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

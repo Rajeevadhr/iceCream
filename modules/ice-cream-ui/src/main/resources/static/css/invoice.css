@@ -1,0 +1,23 @@
+
+#wrapper {
+    width: 800px;
+    margin: 50px auto;
+}
+
+table {
+    margin: auto;
+}
+
+#itemList {
+    width: 600px;
+}
+
+ul{
+    list-style: none;
+}
+
+select {
+    height: 300px;
+    width: 200px;
+}
+

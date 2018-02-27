@@ -1,0 +1,24 @@
+
+#wrapper {
+    width: 500px;
+    margin: 50px auto;
+}
+
+#search {
+    float: right;
+}
+
+#forms {
+    margin-bottom: 50px;
+}
+
+table {
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+}
+
+td,th {
+    padding: 5px;
+}

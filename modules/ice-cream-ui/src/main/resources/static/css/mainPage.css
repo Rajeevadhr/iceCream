@@ -1,0 +1,10 @@
+#wrapper {
+    margin: 100px;
+    width: 700px;
+}
+
+form {
+    border:1px solid #888;
+    padding: 10px;
+    margin: 5px;
+}

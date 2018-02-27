@@ -11,10 +11,10 @@
             <th> Name </th>
             <th> Price </th>
         </tr>
-        <tr>
-            <td th:text="${itemId}" />
-            <td th:text="${itemName}" />
-            <td th:text="${itemPrice}" />
+        <tr th:each="currentItem, stat : ${itemList}">
+            <td th:text="${currentItem.getId()}" />
+            <td th:text="${currentItem.getItemName()}" />
+            <td th:text="${currentItem.getPrice()}" />
         </tr>
     </table>
 </body>

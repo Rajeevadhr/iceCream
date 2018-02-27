@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/invoice.css}" rel="stylesheet" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>|Items|</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+            function selectAll() {
+                var selectElement = document.getElementById("selectedItems");
+                var optionsCount = selectElement.options.length;
+
+                for (var i = 0; i < optionsCount; i++) {
+                    selectElement.options[i].selected = selectAll;
+                }
+            }
+        /*]]>*/
+
+        function addItemsToList() {
+            var selectElement = document.getElementById("allItems");
+            var selectedItemValue = selectElement.options[selectElement.selectedIndex].value;
+            var selectedItemText = selectElement.options[selectElement.selectedIndex].text;
+
+            var opt = document.createElement('option');
+            opt.value = selectedItemValue;
+            opt.innerHTML = selectedItemText;
+            document.getElementById("selectedItems").appendChild(opt);
+        }
+    </script>
+</head>
+<body>
+    <script>
+
+    </script>
+    <div id="wrapper">
+        <h2 style="text-align: center"> Invoice </h2>
+        <table id="itemList" cellspacing="0">
+            <tr>
+                <td>
+                    <form>
+                        <select multiple="multiple" id="allItems">
+                                    <option th:each="item, stat : ${itemList}"
+                                            th:value="${item.getId()}"
+                                            th:text="${item.getItemName()}" />
+                        </select>
+                    </form>
+                </td>
+                <td>
+                    <button onclick="addItemsToList()"> Add item </button>
+                </td>
+                <td>
+                    <form method="get" action="/receipt">
+                        <select multiple="multiple" id="selectedItems" name="items">
+
+                        </select>
+                        <input type="submit" value="Print Receipt" onclick="selectAll()" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
