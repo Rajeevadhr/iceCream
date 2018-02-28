@@ -24,6 +24,6 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
      * @param keyword
      * @return
      */
-    List<Item> findItemByItemNameContains(String keyword);
+    List<Item> findItemsByItemNameContains(String keyword);
 
 }

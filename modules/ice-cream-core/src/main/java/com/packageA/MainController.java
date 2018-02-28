@@ -24,12 +24,36 @@ public class MainController {
      * @return file name of the home page
      */
     @GetMapping("/")
-    public String showMainPage(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,Model model) {
+    public String showMainPage(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                               @RequestParam(value = "idFrom", required = false, defaultValue = "0") String idFrom,
+                               Model model) {
+        int idTo = Integer.parseInt(idFrom)+5;
+
         if (keyword.isEmpty()) {
-            model.addAttribute("itemList", itemRepository.findAll());
+            List<Item> itemList = (List<Item>) itemRepository.findAll();
+            if (itemList.size() > 5) {
+                if (idTo < itemList.size()) {
+                    itemList = itemList.subList(Integer.parseInt(idFrom), idTo);
+                } else {
+                    itemList = itemList.subList(Integer.parseInt(idFrom), itemList.size());
+                }
+            }
+            model.addAttribute("itemList", itemList);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("NumberOfPages", itemList.size()/5);
             return "welcome";
         } else {
-            model.addAttribute("itemList", itemRepository.findItemByItemNameContains(keyword));
+            List<Item> itemList = itemRepository.findItemsByItemNameContains(keyword);
+            if (itemList.size() > 5) {
+                if (idTo < itemList.size()) {
+                    itemList = itemList.subList(Integer.parseInt(idFrom), idTo);
+                } else {
+                    itemList = itemList.subList(Integer.parseInt(idFrom), itemList.size());
+                }
+            }
+            model.addAttribute("itemList", itemList);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("numberOfPages", itemList.size()/5);
             return "welcome";
         }
     }
@@ -45,6 +69,12 @@ public class MainController {
         return "invoice";
     }
 
+    /**
+     * Method related to printing the receipt
+     * @param itemIdArray
+     * @param model
+     * @return
+     */
     @GetMapping("/receipt")
     public String printReceipt(@RequestParam("items") String[] itemIdArray,Model model) {
         int itemId;
