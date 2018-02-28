@@ -1,5 +1,6 @@
 package com.packageA;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -24,6 +25,6 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
      * @param keyword
      * @return
      */
-    List<Item> findItemsByItemNameContains(String keyword);
+    List<Item> findItemsByItemNameContains(String keyword, Pageable pageable);
 
 }

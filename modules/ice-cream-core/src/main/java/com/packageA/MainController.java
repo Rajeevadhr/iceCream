@@ -1,6 +1,8 @@
 package com.packageA;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,37 +27,14 @@ public class MainController {
      */
     @GetMapping("/")
     public String showMainPage(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-                               @RequestParam(value = "idFrom", required = false, defaultValue = "0") String idFrom,
+                               @RequestParam(value = "page", required = false, defaultValue = "0") String page,
                                Model model) {
-        int idTo = Integer.parseInt(idFrom)+5;
-
-        if (keyword.isEmpty()) {
-            List<Item> itemList = (List<Item>) itemRepository.findAll();
-            if (itemList.size() > 5) {
-                if (idTo < itemList.size()) {
-                    itemList = itemList.subList(Integer.parseInt(idFrom), idTo);
-                } else {
-                    itemList = itemList.subList(Integer.parseInt(idFrom), itemList.size());
-                }
-            }
-            model.addAttribute("itemList", itemList);
-            model.addAttribute("keyword", keyword);
-            model.addAttribute("NumberOfPages", itemList.size()/5);
-            return "welcome";
-        } else {
-            List<Item> itemList = itemRepository.findItemsByItemNameContains(keyword);
-            if (itemList.size() > 5) {
-                if (idTo < itemList.size()) {
-                    itemList = itemList.subList(Integer.parseInt(idFrom), idTo);
-                } else {
-                    itemList = itemList.subList(Integer.parseInt(idFrom), itemList.size());
-                }
-            }
-            model.addAttribute("itemList", itemList);
-            model.addAttribute("keyword", keyword);
-            model.addAttribute("numberOfPages", itemList.size()/5);
-            return "welcome";
-        }
+        Pageable pageable = new PageRequest(Integer.parseInt(page), 10);
+        List<Item> itemList = itemRepository.findItemsByItemNameContains(keyword, pageable);
+        model.addAttribute("itemList", itemList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("numberOfPages", itemList.size()/5);
+        return "welcome";
     }
 
     /**
