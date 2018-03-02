@@ -27,4 +27,10 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
      */
     List<Item> findItemsByItemNameContains(String keyword, Pageable pageable);
 
+    /**
+     * Gives the number of records which contains the keyword in the itemName
+     * @param keyword
+     * @return
+     */
+    int countByItemNameContains(String keyword);
 }

@@ -29,11 +29,18 @@ public class MainController {
     public String showMainPage(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                @RequestParam(value = "page", required = false, defaultValue = "0") String page,
                                Model model) {
-        Pageable pageable = new PageRequest(Integer.parseInt(page), 10);
+        int numberOfRecords;
+        int numberOfPages;
+        int pageSize = 5;
+
+        Pageable pageable = new PageRequest(Integer.parseInt(page), pageSize);
         List<Item> itemList = itemRepository.findItemsByItemNameContains(keyword, pageable);
+        numberOfRecords = itemRepository.countByItemNameContains(keyword);
+        numberOfPages = (int) Math.ceil(numberOfRecords/(float)pageSize);
+        model.addAttribute("numberOfPages",numberOfPages);
         model.addAttribute("itemList", itemList);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("numberOfPages", itemList.size()/5);
+        model.addAttribute("page", page);
         return "welcome";
     }
 

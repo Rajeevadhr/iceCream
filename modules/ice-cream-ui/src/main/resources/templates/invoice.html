@@ -18,18 +18,20 @@
                     selectElement.options[i].selected = selectAll;
                 }
             }
-        /*]]>*/
 
         function addItemsToList() {
             var selectElement = document.getElementById("allItems");
-            var selectedItemValue = selectElement.options[selectElement.selectedIndex].value;
-            var selectedItemText = selectElement.options[selectElement.selectedIndex].text;
-
-            var opt = document.createElement('option');
-            opt.value = selectedItemValue;
-            opt.innerHTML = selectedItemText;
-            document.getElementById("selectedItems").appendChild(opt);
+            for (var i = 0; i < selectElement.selectedOptions.length;i++) {
+                var selectedItemValue = selectElement.options[i].value;
+                var selectedItemText = selectElement.options[i].text;
+                var opt = document.createElement('option');
+                opt.value = selectedItemValue;
+                opt.innerHTML = selectedItemText;
+                document.getElementById("selectedItems").appendChild(opt);
+            }
         }
+
+        /*]]>*/
     </script>
 </head>
 <body>
@@ -54,7 +56,7 @@
                 </form>
             </div>
             <div class="col-md-2">
-                <button onclick="addItemsToList()" style="margin: auto"> Add item </button>
+                <button onclick="addItemsToList()" style="margin: auto"> Add items </button>
             </div>
             <div class="col-md-3">
                 <form method="get" action="/receipt">
