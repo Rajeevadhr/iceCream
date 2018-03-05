@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ (C) Copyright 2010-2018 hSenid Mobile Solutions (Pvt) Limited.
+  ~ All Rights Reserved.
+  ~
+  ~ These materials are unpublished, proprietary, confidential source code of
+  ~ hSenid Mobile Solutions (Pvt) Limited and constitute a TRADE SECRET
+  ~ of hSenid Mobile Solutions (Pvt) Limited.
+  ~
+  ~ hSenid Mobile Solutions (Pvt) Limited retains all title to and intellectual
+  ~ property rights in these materials.
+  -->
+
+<Configuration>
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="File" fileName="app.log">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <Logger name="com" level="INFO">
+            <!--<AppenderRef ref="Console"/>-->
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <Logger name="com.mange" level="INFO">
+            <!--<AppenderRef ref="Console"/>-->
+            <AppenderRef ref="File"/>
+        </Logger>
+    </Loggers>
+</Configuration>

@@ -12,13 +12,14 @@
 
 package com.packageA;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class MainController {
     @Autowired
     private ItemRepository itemRepository;
 
-    private Logger logger = Logger.getLogger(MainController.class.getName());
+    private Logger logger = LogManager.getLogger(MainController.class.getName());
 
     /**
      * loads the home page of the site
@@ -57,6 +58,7 @@ public class MainController {
             model.addAttribute("itemList", itemList);
             model.addAttribute("keyword", keyword);
             model.addAttribute("page", page);
+            logger.debug("Welcome page shown");
         } catch (Exception e) {
             logger.error("Welcome page error", new Exception("myException"));
         }
@@ -64,6 +66,7 @@ public class MainController {
         logger.debug("This is a debug message");
         logger.info("This is an info message");
         logger.warn("This is a warning");
+        logger.error("This is an error message");
         return "welcome";
     }
 
