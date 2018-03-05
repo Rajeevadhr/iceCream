@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<!--
+  ~ (C) Copyright 2010-2018 hSenid Mobile Solutions (Pvt) Limited.
+  ~ All Rights Reserved.
+  ~
+  ~ These materials are unpublished, proprietary, confidential source code of
+  ~ hSenid Mobile Solutions (Pvt) Limited and constitute a TRADE SECRET
+  ~ of hSenid Mobile Solutions (Pvt) Limited.
+  ~
+  ~ hSenid Mobile Solutions (Pvt) Limited retains all title to and intellectual
+  ~ property rights in these materials.
+  -->
+
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <link th:href="@{/css/mainPage.css}" rel="stylesheet" />
@@ -30,14 +42,6 @@
             <input type="submit" value=" Show All Items "/>
         </form>
         <br />
-        <form action="/findItem">
-            <select name="itemName">
-                <option th:each="currentItem, stat : ${itemList}"
-                        th:text="${currentItem.getItemName()}"
-                        th:value="${currentItem.getItemName()}"/>
-            </select>
-            <input type="submit" value="Find item details"/>
-        </form>
     </div>
 
 </body>

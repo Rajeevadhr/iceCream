@@ -1,6 +1,17 @@
+/*
+ * (C) Copyright 2010-2018 hSenid Mobile Solutions (Pvt) Limited.
+ * All Rights Reserved.
+ *
+ * These materials are unpublished, proprietary, confidential source code of
+ * hSenid Mobile Solutions (Pvt) Limited and constitute a TRADE SECRET
+ * of hSenid Mobile Solutions (Pvt) Limited.
+ *
+ * hSenid Mobile Solutions (Pvt) Limited retains all title to and intellectual
+ * property rights in these materials.
+ */
+
 package com.packageA;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -8,13 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.apache.log4j.Logger;
-import sun.applet.Main;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Contains all the main controlling methods
@@ -34,7 +41,7 @@ public class MainController {
      * @return file name of the home page
      */
     @GetMapping("/")
-    public String showMainPage (@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+    public String showWelcomePage (@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                @RequestParam(value = "page", required = false, defaultValue = "0") String page,
                                Model model) {
         int numberOfRecords;
@@ -42,26 +49,21 @@ public class MainController {
         int pageSize = 5;
 
         Pageable pageable = new PageRequest(Integer.parseInt(page), pageSize);
-        List<Item> itemList = itemRepository.findItemsByItemNameContains(keyword, pageable);
-        numberOfRecords = itemRepository.countByItemNameContains(keyword);
-        numberOfPages = (int) Math.ceil(numberOfRecords/(float)pageSize);
-        model.addAttribute("numberOfPages",numberOfPages);
-        model.addAttribute("itemList", itemList);
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("page", page);
-
-//        Properties props = new Properties();
-//        try {
-//            props.load(getClass().getResourceAsStream("/log4j.properties"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        PropertyConfigurator.configure(props);
+        try {
+            List<Item> itemList = itemRepository.findItemsByItemNameContains(keyword, pageable);
+            numberOfRecords = itemRepository.countByItemNameContains(keyword);
+            numberOfPages = (int) Math.ceil(numberOfRecords/(float)pageSize);
+            model.addAttribute("numberOfPages",numberOfPages);
+            model.addAttribute("itemList", itemList);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("page", page);
+        } catch (Exception e) {
+            logger.error("This is an error message", new Exception("myException"));
+        }
         logger.trace("This is a trace message");
         logger.debug("This is a debug message");
         logger.info("This is an info message");
         logger.warn("This is a warning");
-        logger.error("This is an error message");
         return "welcome";
     }
 
@@ -72,7 +74,11 @@ public class MainController {
      */
     @GetMapping("/invoice")
     public String showInvoicePage(Model model) {
-        model.addAttribute("itemList", itemRepository.findAll());
+        try {
+            model.addAttribute("itemList", itemRepository.findAll());
+        } catch (Exception e) {
+            logger.error("Invoice error", e);
+        }
         return "invoice";
     }
 
@@ -89,15 +95,28 @@ public class MainController {
         Item item;
         float total = 0;
 
-        for (int i = 0; i < itemIdArray.length; i++) {
-            itemId = Integer.parseInt(itemIdArray[i]);
-            item = itemRepository.findItemById(itemId);
-            itemList.add(item);
-            total += item.getPrice();
+        try {
+            for (int i = 0; i < itemIdArray.length; i++) {
+                itemId = Integer.parseInt(itemIdArray[i]);
+                item = itemRepository.findItemById(itemId);
+                itemList.add(item);
+                total += item.getPrice();
+            }
+            model.addAttribute("itemList", itemList);
+            model.addAttribute("total", total);
+        } catch (Exception e) {
+            logger.error("Receipt error",e);
         }
-        model.addAttribute("itemList", itemList);
-        model.addAttribute("total", total);
         return "receipt";
+    }
+
+    /**
+     * Loads the main page
+     * @return
+     */
+    @GetMapping("/main")
+    public String showMainPage() {
+        return "mainPage";
     }
 
     /**
@@ -160,8 +179,8 @@ public class MainController {
             model.addAttribute("itemName", item.getItemName());
             model.addAttribute("itemPrice", item.getPrice());
             return "showItem";
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Show item error",e);
         }
         return null;
     }

@@ -13,9 +13,13 @@
             function selectAll() {
                 var selectElement = document.getElementById("selectedItems");
                 var optionsCount = selectElement.options.length;
-
-                for (var i = 0; i < optionsCount; i++) {
-                    selectElement.options[i].selected = selectAll;
+                if (optionsCount !== 0) {
+                    for (var i = 0; i < optionsCount; i++) {
+                        selectElement.options[i].selected = selectAll;
+                    }
+                } else {
+                    alert("No items selected..!");
+                    return false;
                 }
             }
 
@@ -61,7 +65,7 @@
             <div class="col-md-3">
                 <form method="get" action="/receipt">
                     <select multiple="multiple" id="selectedItems" name="items"> </select>
-                    <input type="submit" value="Print Receipt" onclick="selectAll()" />
+                    <input type="submit" value="Print Receipt" onclick="return selectAll()" />
                 </form>
             </div>
             <div class="col-md-2"></div>
