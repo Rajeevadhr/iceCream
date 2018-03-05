@@ -1,14 +1,19 @@
 package com.packageA;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.apache.log4j.Logger;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Contains all the main controlling methods
@@ -21,12 +26,14 @@ public class MainController {
     @Autowired
     private ItemRepository itemRepository;
 
+    private Logger logger = Logger.getLogger(Application.class.getName());
+
     /**
      * loads the home page of the site
      * @return file name of the home page
      */
     @GetMapping("/")
-    public String showMainPage(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+    public String showMainPage (@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                @RequestParam(value = "page", required = false, defaultValue = "0") String page,
                                Model model) {
         int numberOfRecords;
@@ -41,6 +48,19 @@ public class MainController {
         model.addAttribute("itemList", itemList);
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
+
+        Properties props = new Properties();
+        try {
+//            props.load(new FileInputStream("../../main/resources/log4j.properties"));
+            props.load(getClass().getResourceAsStream("/log4j.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        PropertyConfigurator.configure(props);
+        logger.debug("Hello this is a debug message");
+        logger.info("Hello this is an info message");
+        logger.error("Hello this is an error message");
+
         return "welcome";
     }
 
