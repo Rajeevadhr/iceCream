@@ -50,7 +50,7 @@
                     <div class="col-md-12" style="text-align: center">
                         <ul class="pagination">
                             <li th:each="i : ${#numbers.sequence( 1, numberOfPages)}"
-                                th:class="${page == (i-1)} ? 'active' : '' ">
+                                th:class="${T(Integer).parseInt(page) == (i-1)} ? 'active' : '' ">
                                 <a th:href="@{/(page=${i-1},keyword=${keyword})}"
                                    th:text="${ i }"></a>
                             </li>

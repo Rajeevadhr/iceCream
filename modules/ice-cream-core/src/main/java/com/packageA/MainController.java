@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.apache.log4j.Logger;
+import sun.applet.Main;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class MainController {
     @Autowired
     private ItemRepository itemRepository;
 
-    private Logger logger = Logger.getLogger(Application.class.getName());
+    private Logger logger = Logger.getLogger(MainController.class.getName());
 
     /**
      * loads the home page of the site
@@ -49,18 +50,18 @@ public class MainController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
 
-        Properties props = new Properties();
-        try {
-//            props.load(new FileInputStream("../../main/resources/log4j.properties"));
-            props.load(getClass().getResourceAsStream("/log4j.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        PropertyConfigurator.configure(props);
-        logger.debug("Hello this is a debug message");
-        logger.info("Hello this is an info message");
-        logger.error("Hello this is an error message");
-
+//        Properties props = new Properties();
+//        try {
+//            props.load(getClass().getResourceAsStream("/log4j.properties"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        PropertyConfigurator.configure(props);
+        logger.trace("This is a trace message");
+        logger.debug("This is a debug message");
+        logger.info("This is an info message");
+        logger.warn("This is a warning");
+        logger.error("This is an error message");
         return "welcome";
     }
 
@@ -107,12 +108,7 @@ public class MainController {
      */
     @PostMapping(value = "/save")
     public @ResponseBody String addNewItem (@RequestBody Item item) {
-        try {
-            itemRepository.save(item);
-            return "Successfully saved";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        itemRepository.save(item);
         return null;
     }
 
@@ -125,18 +121,12 @@ public class MainController {
     @PostMapping("/addItem")
     public String addItem(@RequestParam("itemName") String itemName,
                           @RequestParam("itemPrice") String itemPrice){
-
         Item newItem = new Item();
 
         newItem.setItemName(itemName);
         newItem.setPrice(Float.parseFloat(itemPrice));
-        try {
-            itemRepository.save(newItem);
-            return "addItem";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        itemRepository.save(newItem);
+        return "addItem";
     }
 
     /**
@@ -148,6 +138,7 @@ public class MainController {
     public String getAllItems (Model model) {
         try {
             model.addAttribute("itemList",itemRepository.findAll());
+            logger.debug("Debug message of the page all");
             return "showAll";
         } catch (Exception e) {
             e.printStackTrace();
