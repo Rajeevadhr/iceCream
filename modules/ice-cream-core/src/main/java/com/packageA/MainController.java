@@ -58,7 +58,7 @@ public class MainController {
             model.addAttribute("keyword", keyword);
             model.addAttribute("page", page);
         } catch (Exception e) {
-            logger.error("This is an error message", new Exception("myException"));
+            logger.error("Welcome page error", new Exception("myException"));
         }
         logger.trace("This is a trace message");
         logger.debug("This is a debug message");
