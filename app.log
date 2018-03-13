@@ -1,0 +1,40 @@
+2018-03-05 15:58:54.837 [http-nio-8080-exec-1] WARN  com.packageA.MainController - This is a warning
+2018-03-05 15:58:54.838 [http-nio-8080-exec-1] ERROR com.packageA.MainController - This is an error message
+2018-03-05 16:00:40.762 [http-nio-8080-exec-1] DEBUG com.packageA.MainController - Welcome page shown
+2018-03-05 16:00:40.763 [http-nio-8080-exec-1] DEBUG com.packageA.MainController - This is a debug message
+2018-03-05 16:00:40.763 [http-nio-8080-exec-1] INFO  com.packageA.MainController - This is an info message
+2018-03-05 16:00:40.763 [http-nio-8080-exec-1] WARN  com.packageA.MainController - This is a warning
+2018-03-05 16:00:40.763 [http-nio-8080-exec-1] ERROR com.packageA.MainController - This is an error message
+2018-03-07 09:20:27.346 [restartedMain] INFO  com.packageA.Application - Starting Application on rajeeva-pc with PID 7174 (/home/rajeeva/projects/Spring/multiModule/iceCream/modules/ice-cream-core/target/classes started by rajeeva in /home/rajeeva/projects/Spring/multiModule/iceCream)
+2018-03-07 09:20:27.371 [restartedMain] INFO  com.packageA.Application - No active profile set, falling back to default profiles: default
+2018-03-07 09:20:33.370 [restartedMain] INFO  com.packageA.Application - Started Application in 6.608 seconds (JVM running for 8.439)
+2018-03-07 09:20:46.995 [http-nio-8080-exec-1] INFO  com.packageA.MainController - This is an info message
+2018-03-07 09:20:46.996 [http-nio-8080-exec-1] WARN  com.packageA.MainController - This is a warning
+2018-03-07 09:20:46.996 [http-nio-8080-exec-1] ERROR com.packageA.MainController - This is an error message
+2018-03-07 09:20:53.651 [http-nio-8080-exec-3] INFO  com.packageA.MainController - This is an info message
+2018-03-07 09:20:53.651 [http-nio-8080-exec-3] WARN  com.packageA.MainController - This is a warning
+2018-03-07 09:20:53.651 [http-nio-8080-exec-3] ERROR com.packageA.MainController - This is an error message
+2018-03-07 09:20:54.166 [http-nio-8080-exec-5] INFO  com.packageA.MainController - This is an info message
+2018-03-07 09:20:54.167 [http-nio-8080-exec-5] WARN  com.packageA.MainController - This is a warning
+2018-03-07 09:20:54.167 [http-nio-8080-exec-5] ERROR com.packageA.MainController - This is an error message
+2018-03-07 09:20:54.591 [http-nio-8080-exec-7] INFO  com.packageA.MainController - This is an info message
+2018-03-07 09:20:54.591 [http-nio-8080-exec-7] WARN  com.packageA.MainController - This is a warning
+2018-03-07 09:20:54.591 [http-nio-8080-exec-7] ERROR com.packageA.MainController - This is an error message
+2018-03-07 09:20:55.396 [http-nio-8080-exec-9] INFO  com.packageA.MainController - This is an info message
+2018-03-07 09:20:55.396 [http-nio-8080-exec-9] WARN  com.packageA.MainController - This is a warning
+2018-03-07 09:20:55.396 [http-nio-8080-exec-9] ERROR com.packageA.MainController - This is an error message
+2018-03-07 09:21:08.046 [http-nio-8080-exec-2] INFO  com.packageA.MainController - This is an info message
+2018-03-07 09:21:08.046 [http-nio-8080-exec-2] WARN  com.packageA.MainController - This is a warning
+2018-03-07 09:21:08.046 [http-nio-8080-exec-2] ERROR com.packageA.MainController - This is an error message
+2018-03-08 16:08:47.828 [restartedMain] INFO  com.packageA.Application - Starting Application on rajeeva-pc with PID 18444 (/home/rajeeva/projects/Spring/multiModule/iceCream/modules/ice-cream-core/target/classes started by rajeeva in /home/rajeeva/projects/Spring/multiModule/iceCream)
+2018-03-08 16:08:47.836 [restartedMain] INFO  com.packageA.Application - No active profile set, falling back to default profiles: default
+2018-03-08 16:08:51.620 [restartedMain] INFO  com.packageA.Application - Started Application in 3.973 seconds (JVM running for 4.562)
+2018-03-08 16:09:03.885 [http-nio-8080-exec-1] INFO  com.packageA.MainController - This is an info message
+2018-03-08 16:09:03.886 [http-nio-8080-exec-1] WARN  com.packageA.MainController - This is a warning
+2018-03-08 16:09:03.886 [http-nio-8080-exec-1] ERROR com.packageA.MainController - This is an error message
+2018-03-13 11:07:51.340 [restartedMain] INFO  com.packageA.Application - Starting Application on rajeeva-pc with PID 3938 (/home/rajeeva/projects/Spring/multiModule/iceCream/modules/ice-cream-core/target/classes started by rajeeva in /home/rajeeva/projects/Spring/multiModule/iceCream)
+2018-03-13 11:07:51.384 [restartedMain] INFO  com.packageA.Application - No active profile set, falling back to default profiles: default
+2018-03-13 11:07:56.988 [restartedMain] INFO  com.packageA.Application - Started Application in 6.25 seconds (JVM running for 9.021)
+2018-03-13 11:08:05.875 [http-nio-8080-exec-1] INFO  com.packageA.MainController - This is an info message
+2018-03-13 11:08:05.876 [http-nio-8080-exec-1] WARN  com.packageA.MainController - This is a warning
+2018-03-13 11:08:05.876 [http-nio-8080-exec-1] ERROR com.packageA.MainController - This is an error message
