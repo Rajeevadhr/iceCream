@@ -14,7 +14,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
      */
     Item findByItemName(String itemName);
 
-    /**aaa
+    /**
      * Search an item using its id
      * @param id
      * @return
