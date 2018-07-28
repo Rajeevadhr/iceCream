@@ -16,7 +16,7 @@
         <Console name="Console">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="File" fileName="app.log">
+        <File name="File" fileName="/rrd/logs/ice-cream/info.log">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
@@ -26,12 +26,10 @@
         </Root>
 
         <Logger name="com" level="INFO">
-            <!--<AppenderRef ref="Console"/>-->
             <AppenderRef ref="File"/>
         </Logger>
 
         <Logger name="com.mange" level="INFO">
-            <!--<AppenderRef ref="Console"/>-->
             <AppenderRef ref="File"/>
         </Logger>
     </Loggers>

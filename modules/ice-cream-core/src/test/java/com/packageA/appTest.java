@@ -17,62 +17,38 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+//@AutoConfigureMockMvc
 public class appTest {
-    @LocalServerPort
+//    @LocalServerPort
     private int port;
 
-    @Autowired
+//    @Autowired
     private TestRestTemplate restTemplate;
 
-    @Autowired
+//    @Autowired
     private MockMvc mockMvc;
-
-//    @Test
-//    public void testSaveItem() throws Exception {
-//        String itemJson;
-//
-//        Gson gson = new Gson();
-//        Item item = new Item();
-//
-//        item.setItemName("JellyType2");
-//        item.setPrice(14);
-//        itemJson = gson.toJson(item);
-//
-//        this.mockMvc.perform(post("/save")
-//                .content(itemJson).contentType(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(status().isOk());
-//    }
-
-//    @Test
-//    public void testSelectAllItems() throws Exception {
-//        this.mockMvc.perform(get("/all"))
-//                .andDo(print())
-//                .andExpect(status().isOk());
-//    }
 
     @Test
     public void testEditItem() throws Exception {
-        this.mockMvc.perform(put("/editPrice").param("id","14")
-                .param("name","Peanut").param("price","22"))
-                .andDo(print())
-                .andExpect(status().isOk());
+//        this.mockMvc.perform(put("/editPrice").param("id","14")
+//                .param("name","Peanut").param("price","22"))
+//                .andDo(print())
+//                .andExpect(status().isOk());
     }
 
     @Test
     public void testDeleteItem() throws Exception {
-        this.mockMvc.perform(delete("/deleteItem").param("id","26"))
-                .andDo(print())
-                .andExpect(status().isOk());
+//        this.mockMvc.perform(delete("/deleteItem").param("id","26"))
+//                .andDo(print())
+//                .andExpect(status().isOk());
     }
 
     @Test
     public void testSelectItemsByName() throws Exception {
-        this.mockMvc.perform(get("/selectItem").param("itemName","Nut"))
-                .andDo(print())
-                .andExpect(status().isOk());
+//        this.mockMvc.perform(get("/selectItem").param("itemName","Nut"))
+//                .andDo(print())
+//                .andExpect(status().isOk());
     }
 }

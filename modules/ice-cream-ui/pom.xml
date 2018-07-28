@@ -8,24 +8,12 @@
     <version>1.0</version>
   </parent>
 
-  <groupId>groupA</groupId>
   <artifactId>ice-cream-ui</artifactId>
   <version>1.0</version>
   <name>ice-cream-ui</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <java.version>1.8</java.version>
-  </properties>
-
   <dependencies>
-      <!--<dependency>-->
-          <!--<groupId>groupA</groupId>-->
-          <!--<artifactId>ice-cream-core</artifactId>-->
-          <!--<version>1.0</version>-->
-          <!--<scope>compile</scope>-->
-      <!--</dependency>-->
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-thymeleaf</artifactId>
